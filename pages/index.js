@@ -1,6 +1,7 @@
 import Head from 'next/head'
-import Posts from '../components/posts'
+import HotPosts from '../components/hotposts'
 import Activity from '../components/activity'
+import NavBar from '../components/navbar'
 export default function Home() {
     return (
         <div className="container">
@@ -15,14 +16,10 @@ export default function Home() {
             </Head>
 
             <main>
-                <h1 className="title">
-                    GameDB (name subject to change)
-                </h1>
+                <NavBar />
+                so this page will load only when user is logged in or else he is redirected to <a href="/login">/login</a>
 
-                <p className="description">
-                </p>
-                {/* Posts Loading component here below */}
-                <div className='main-container'><Activity/><Posts /></div>
+                <div className='main-container'><Activity /><HotPosts /></div>
 
             </main>
 

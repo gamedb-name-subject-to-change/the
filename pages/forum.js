@@ -1,5 +1,5 @@
 import React, { useReducer, useEffect } from 'react';
-
+import Head from 'next/head'
 const Posts = () => {
     const defaultState = {
         page: <div>Loading...</div>,
@@ -32,14 +32,14 @@ const Posts = () => {
             >
                 <h3>{e.title}</h3>
                 <p>
-                    {e.content}...
+                    {(e.content) ? e.content.substring(0, 70) : e.content}...
                 </p>
                 <span>by {e.author} on {e.date}</span>
             </a>));
         });
         return (
-            <div className='container-hot-posts'>
-                <input id="search-box" className='input' type="text" onChange={(event) => { dispatch({ type: 'PAGENUMBER', value:0});dispatch({ type: 'SEARCH', value: event.target.value }) }}></input>
+            <div className='container'>
+                <input id="search-box" className='input' type="text" onChange={(event) => { dispatch({ type: 'PAGENUMBER', value: 0 }); dispatch({ type: 'SEARCH', value: event.target.value }) }}></input>
 
                 <div className='grid'>
                     <button onClick={() => dispatch({ type: 'PAGENUMBER', value: (state.pageNumber > 0) ? (pageNumber - 1) : pageNumber })}>PREV</button>
@@ -149,9 +149,18 @@ const Posts = () => {
             .catch((e) => { console.log(e) })
     }, [finalFormData]);
     return (
-        <div>
-            {page}
+        <div className="flex min-h-screen flex-col items-center justify-center py-2">
+            <Head>
+                <title>Create Next App</title>
+                <link rel="icon" href="/favicon.ico" />
+            </Head>
+            <h1 className='title'>GameDB Forums</h1>
+            <div>
+                {page}
+            </div>
+
         </div>
+
     );
 }
 

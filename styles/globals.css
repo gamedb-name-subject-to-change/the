@@ -28,7 +28,22 @@ body {
     flex-direction: row;
     margin-top: 3rem;
 }
-
+.container {
+    min-height: 100vh;
+    padding: 0 0.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.container-navbar{
+    min-width: 100%;
+    padding: 0 0.5rem;
+    display: flex;
+    flex-direction: eow;
+    justify-content: center;
+    align-items: center;
+}
 .container-home-activity {
     min-height: 100vh;
     min-width: 60%;

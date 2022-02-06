@@ -21,7 +21,8 @@ const Schema = new mongoose.Schema({
         content: { type: String },
         tags: { type: Array }
     }],
-    follows: [{ username: String }]
+    follows: [{ username: String }],
+    updates: [{ appId: String, status: String, comment: String}]
 });
 
 const Users = mongoose.models.GDBUsers || mongoose.model("GDBUsers", Schema);
