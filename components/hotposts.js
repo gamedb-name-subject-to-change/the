@@ -46,7 +46,7 @@ const Posts = () => {
     }, []);
     return (
         <div>
-            <h1 className='title'>Hot Forum Posts</h1>
+            <h1 className='title'>Forum Activity</h1>
             {posts}
         </div>
     );
