@@ -3,10 +3,18 @@ const Schema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
+        unique:true
     },
     password: {
         type: String,
         required: true,
+    },
+    displayName: {
+        type: String,
+        required: true,
+    },
+    avatar:{
+        type:String
     },
     list: [{
         appId: { type: Number, required: true },
@@ -17,9 +25,6 @@ const Schema = new mongoose.Schema({
     }],
     posts: [{
         postId: { type: Number, required: true },
-        title: { type: String, required: true },
-        content: { type: String },
-        tags: { type: Array }
     }],
     follows: [{ username: String }],
     updates: [{ appId: String, status: String, comment: String}]

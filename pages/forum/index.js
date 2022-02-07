@@ -40,12 +40,15 @@ const Posts = () => {
         });
         return (
             <div className='container'>
-                <input id="search-box" className='input' type="text" onChange={(event) => { dispatch({ type: 'PAGENUMBER', value: 0 }); dispatch({ type: 'SEARCH', value: event.target.value }) }}></input>
 
-                <div className='grid'>
-                    <button onClick={() => dispatch({ type: 'PAGENUMBER', value: (state.pageNumber > 0) ? (pageNumber - 1) : pageNumber })}>PREV</button>
-                    <button onClick={() => dispatch({ type: 'PAGENUMBER', value: state.pageNumber + 1 })}>NEXT</button>
-                    <button onClick={newPost}>NEW</button>
+                <div className='searchbar-wrapper'>
+                    <input id="search-box" className='input' type="text" onChange={(event) => { dispatch({ type: 'PAGENUMBER', value: 0 }); dispatch({ type: 'SEARCH', value: event.target.value }) }}></input>
+
+                    <div className='grid'>
+                        <button onClick={() => dispatch({ type: 'PAGENUMBER', value: (state.pageNumber > 0) ? (pageNumber - 1) : pageNumber })}>PREV</button>
+                        <button onClick={() => dispatch({ type: 'PAGENUMBER', value: state.pageNumber + 1 })}>NEXT</button>
+                        <button onClick={newPost}>NEW</button>
+                    </div>
                 </div>
                 <div className="grid-forum-posts">
                     {posts}
@@ -155,7 +158,7 @@ const Posts = () => {
                 <title>GameDB Forums</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <NavBar/>
+            <NavBar />
             <h1 className='title'>GameDB Forums</h1>
             <div>
                 {page}

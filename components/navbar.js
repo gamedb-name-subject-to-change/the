@@ -7,7 +7,7 @@ export default function(){
             <div className="navbar-button" onClick={()=>window.location.href="/browse"}>Browse</div>
             <div className="navbar-button" onClick={()=>window.location.href="/forum"}>Forums</div>
             <div className="navbar-button" onClick={()=>window.location.href="/login"}>Login</div>
-            <div className="navbar-button">Logout</div>
+            <div className="navbar-button" onClick={()=>window.location.href="/register"}>Register</div>
         </div>
     );
 }

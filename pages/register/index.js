@@ -1,25 +1,23 @@
 import axios from 'axios'
 import Head from 'next/head'
-import { useState, useReducer, useEffect, useRef } from 'react';
-const validateUser = async (formData) => {
-    const res = await axios.post('/api/user/validate', formData).then(async (res) => await res.data)
+import { useState, useRef, useEffect } from 'react';
+const registerUser = async (formData) => {
+    const res = await axios.post('/api/user/register', formData).then(async (res) => await res.data)
     if (res.status === 'ok') {
         alert('success')
-        //localStorage.setItem(res.data)
         window.location.href = '/'
     }
     else alert(res.status);
 }
+
 export default function ({ data }) {
-    const username=useRef(null);
-    const password=useRef(null);
+    const username = useRef(null)
+    const displayName = useRef(null)
+    const password = useRef(null)
     const [formData, setFormData] = useState(undefined)
-    const pushFormData=()=>{
-        setFormData({username:username.current.value,password:password.current.value})
-    }
     useEffect(() => {
         if (formData) {
-            validateUser(formData);
+            registerUser(formData);
         }
     }, [formData])
     return (<div className="container">
@@ -33,7 +31,7 @@ export default function ({ data }) {
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         </Head>
         <main>
-            <h1>login</h1>
+            <h1>register</h1>
             <form className="form">
                 <input
                     type="text"
@@ -41,14 +39,18 @@ export default function ({ data }) {
                     placeholder="Username"
                 />
                 <input
+                    type="text"
+                    ref={displayName}
+                    placeholder="Display Name"
+                />
+                <input
                     type="password"
                     ref={password}
                     placeholder="Password"
                 />
-                <button type="button" onClick={pushFormData}>
-                    Login
+                <button type="button" onClick={() => setFormData({username:username.current.value,displayName:displayName.current.value,password:password.current.value})}>
+                    Register
                 </button>
-                <a href='/register'>click here to register</a>
             </form>
         </main>
     </div>);
