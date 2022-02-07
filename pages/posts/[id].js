@@ -4,7 +4,7 @@ import Head from 'next/head'
 export default function Post({ data }) {
     return (<div className="container">
         <Head>
-            <title>rustbucket</title>
+            <title>GameDB Forum Post</title>
             <link rel="icon" href="/favicon.ico" />
             <meta charSet="UTF-8" />
             <meta name="description" content="No Description" />
@@ -21,6 +21,7 @@ export default function Post({ data }) {
             <p className="description">
                 {data.content}
             </p>
+            <h2>Comments</h2>
 
 
         </main>
@@ -260,11 +261,11 @@ font-size: 0.75rem;
 }
 
 export async function getServerSidePaths() {
-    const res = await axios.get(`${process.env.URL}/api/get`).then(async (res) => await res.data)
+    const res = await axios.get(`${process.env.URL}/api/forum/get`).then(async (res) => await res.data)
     const paths = res.map(item => { return { params: { id: item } } })
     return { paths, fallback: false }
 }
 export async function getServerSideProps({ params }) {
-    const data = await axios.post(`${process.env.URL}/api/get`, { id: params.id }).then(async (res) => await res.data)
+    const data = await axios.post(`${process.env.URL}/api/forum/get`, { id: params.id }).then(async (res) => await res.data)
     return { props: {data} }
 }

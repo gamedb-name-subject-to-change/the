@@ -23,15 +23,15 @@ const Posts = () => {
         );
     };
     useEffect(() => {
-        console.log("here")
         let options = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-            }
+            },
+            body:JSON.stringify({count:3})
         }
-        fetch('/api/get', options)
+        fetch('/api/forum/get', options)
             .then(async (response) => {
                 return response.json().then(function (json) {
                     return response.ok ? json : Promise.reject(json);
@@ -46,11 +46,8 @@ const Posts = () => {
     }, []);
     return (
         <div>
-            <h1>Hot Forum Posts</h1>
+            <h1 className='title'>Hot Forum Posts</h1>
             {posts}
-            <button onClick={() => {
-                window.location.href = "/forum"
-            }}>More</button>
         </div>
     );
 }

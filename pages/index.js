@@ -17,8 +17,6 @@ export default function Home() {
 
             <main>
                 <NavBar />
-                so this page will load only when user is logged in or else he is redirected to <a href="/login">/login</a>
-
                 <div className='main-container'><Activity /><HotPosts /></div>
 
             </main>
