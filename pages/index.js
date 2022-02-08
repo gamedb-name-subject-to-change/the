@@ -14,9 +14,8 @@ export default function Home() {
                 <meta name="author" content="malis" />
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             </Head>
-
-            <main>
-                <NavBar />
+            <NavBar />
+            <main>  
                 <div className='main-container'><Activity /><HotPosts /></div>
 
             </main>

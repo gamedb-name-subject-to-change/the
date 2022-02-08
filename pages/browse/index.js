@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import NavBar from '../../components/navbar'
 const axios = require('axios')
+const parse = require('html-react-parser');
+
 export default function () {
     const data = require('../../database.json')['applist']['apps']
     const [currentPage, setCurrentPage] = useState(-1)
@@ -14,7 +16,8 @@ export default function () {
                 className="card" key={i}>
                 <h3>{e.data.name}</h3>
                 <p>
-                    {(e.data.about_the_game) ? e.data.about_the_game.substring(0, 180) : e.data.about_the_game}...
+                    {parse(e.data.about_the_game)}
+                    {/* {(e.data.about_the_game) ? e.data.about_the_game.substring(0, 180) : e.data.about_the_game}... */}
                 </p>
                 <img className="card-image" src={e.data.background}></img>
 
