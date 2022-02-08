@@ -39,7 +39,9 @@ const Posts = () => {
             })
             .then((data) => {
                 if (data.posts.length == 0 && !((search) ? (search.trim().length == 0) ? false : true : true)) return
-                setPosts(renderPosts(data.posts))
+                let temp=renderPosts(data.posts)
+                console.log(temp,typeof(temp))
+                setPosts(temp)
 
             }).then()
             .catch((e) => console.log(e))

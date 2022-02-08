@@ -1,11 +1,11 @@
 import axios from 'axios'
 import Head from 'next/head'
-import { useState, useReducer, useEffect, useRef } from 'react';
+import { useState,  useEffect, useRef } from 'react';
 const validateUser = async (formData) => {
     const res = await axios.post('/api/user/validate', formData).then(async (res) => await res.data)
     if (res.status === 'ok') {
         alert('success')
-        //localStorage.setItem(res.data)
+        localStorage.setItem('token',res.data)
         window.location.href = '/'
     }
     else alert(res.status);

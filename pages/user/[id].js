@@ -1,7 +1,8 @@
 import axios from 'axios'
 import Head from 'next/head'
-
+import NavBar from '../../components/navbar'
 export default function ({ data }) {
+    console.log(data)
     return (<div className="container">
         <Head>
             <title>GameDB User Profile</title>
@@ -12,7 +13,9 @@ export default function ({ data }) {
             <meta name="author" content="malis" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         </Head>
-        <main><h1>User Profile</h1></main>
+        <NavBar/>
+        <main><h1>User Profile</h1>
+        </main>
     </div>);
 }
 export async function getServerSidePaths() {
