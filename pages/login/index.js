@@ -3,7 +3,8 @@ import Head from 'next/head'
 import { useState, useEffect, useRef } from 'react';
 import styles from '../../styles/Login.module.css'
 const registerUser = async (formData) => {
-    const res = await axios.post('/api/user/register', formData).then(async (res) => await res.data)
+    console.log('here')
+    const res = await axios.post('/api/user/register', { formData }).then(async (res) => await res.data)
     if (res.status === 'ok') {
         alert('success. please login again using your credentials')
         window.location.href = '/'
@@ -11,6 +12,7 @@ const registerUser = async (formData) => {
     else alert(res.status);
 }
 const validateUser = async (formData) => {
+    console.log('here')
     const res = await axios.post('/api/user/validate', formData).then(async (res) => await res.data)
     if (res.status === 'ok') {
         alert('success')
@@ -20,6 +22,8 @@ const validateUser = async (formData) => {
     else alert(res.status);
 }
 export default function Login({ data }) {
+    if (typeof window != 'undefined')
+        window.location.href = '/login?#'
     const username = useRef(null);
     const password = useRef(null);
     const nusername = useRef(null);
@@ -40,7 +44,6 @@ export default function Login({ data }) {
     }, [formData])
     useEffect(async () => {
         if (newUserData) {
-            console.log(here)
             await registerUser(newUserData);
             setFormData(undefined)
             setNewUserData(undefined)
@@ -55,6 +58,7 @@ export default function Login({ data }) {
             <meta name="keywords" content="Absolutely, Nothing, Here" />
             <meta name="author" content="malis" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            {() => window.location.href = '/login?#'}
         </Head>
         <main className={styles['main-container']}>
             <div className={styles.container}>
@@ -78,7 +82,7 @@ export default function Login({ data }) {
                     <div className={styles['form-content']}>
                         <div className={styles['login-form']}>
                             <div className={styles.title}>Login</div>
-                            <form action="#">
+                            <form>
                                 <div className={styles['input-boxes']}>
                                     <div className={styles['input-box']}>
                                         <i className={styles.fas + " " + styles['fa-user']}></i>
@@ -100,7 +104,7 @@ export default function Login({ data }) {
                         </div>
                         <div className={styles['signup-form']}>
                             <div className={styles.title}>Sign up</div>
-                            <form action="#">
+                            <form>
                                 <div className={styles['input-boxes']}>
                                     <div className={styles['input-box']}>
                                         <i className={styles.fas + " " + styles['fa-user']}></i>
@@ -116,7 +120,7 @@ export default function Login({ data }) {
                                     </div >
                                     <div className={styles.button + " " + styles['input-box']}>
                                         <input type="submit" onClick={() => {
-                                            setFormData({ username: nusername.current.value, displayName: ndisplayName.current.value, password: npassword.current.value })
+                                            setNewUserData({ username: nusername.current.value, displayName: ndisplayName.current.value, password: npassword.current.value })
                                         }
                                         } value="Submit" />
                                     </div >
