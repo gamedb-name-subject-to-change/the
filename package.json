@@ -6,7 +6,8 @@
     "build": "next build",
     "lint": "next lint",
     "start": "next start -p $PORT",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "npm run build",
+    "devlog":"heroku logs -a csicontestapp -t"
   },
   "dependencies": {
     "axios": "^0.25.0",
