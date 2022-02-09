@@ -95,10 +95,10 @@ export default function () {
         <NavBar />
         <main><div className="container" style={{ minWidth: '60vw', alignItems: 'center', justifyContent: 'top' }}>
 
-            <div className="grid" style={{ maxHeight: '20vh' }}>
+            <div className="grid" style={{ minHeight: '20vh' }}>
                 <h1>Find Games</h1>
 
-                <input style={{ minWidth: '40vw' }} type="text" placeholder="Search.." id="searchbox" ref={searchText}>
+                <input className="" style={{ minWidth: '40vw' }} type="text" placeholder="Search.." id="searchbox" ref={searchText}>
                 </input>
                 <button style={{ margin: '1rem' }} onClick={pressed}>Search</button>
                 {/* <button onClick={nextPage}>Next</button>

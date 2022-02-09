@@ -16,7 +16,7 @@ export default function userlist() {
             list.push(<div className='game-list-item'>
                 <img src={data.header_image}/>
                 <h1 style={{minWidth:'60%'}}>   {data.name}   </h1>  
-                <span>Score: {el.score}</span>
+                <div ><h1>{el.score}</h1></div>
             </div>)
         }
         setGameList(list)

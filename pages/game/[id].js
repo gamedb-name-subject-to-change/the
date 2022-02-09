@@ -89,15 +89,6 @@ export default function Home({ data }) {
 
                 </div>
             </main>
-            <footer>
-                <a
-                    href=""
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    WIP
-                </a>
-            </footer>
         </div>
     )
 }

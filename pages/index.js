@@ -21,16 +21,6 @@ export default function Home() {
                 
 
             </main>
-
-            <footer>
-                <a
-                    href=""
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    WIP
-                </a>
-            </footer>
         </div>
     )
 }

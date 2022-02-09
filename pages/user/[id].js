@@ -1,6 +1,6 @@
 import axios from 'axios'
 import Head from 'next/head'
-import HotPosts from '../../components/hotposts'
+import UserActivity from '../../components/userposts'
 import GameList from '../../components/userlist'
 import NavBar from '../../components/navbar'
 export default function ({ data }) {
@@ -20,22 +20,12 @@ export default function ({ data }) {
         <NavBar />
             <div className='user-container'>
                 <div className='grid' style={{background:`rgba(0,0,0,0)`}} >
-                    <h1 style={{background:`rgba(0,0,0,0)`}}>{data.displayName}</h1>
+                    <h1 style={{background:`rgba(0,0,0,0)`,marginBlockStart:"15%"}}>{data.displayName}'s Profile</h1>
                 </div>
             </div>
 
-            <div className='main-container'><GameList /><HotPosts /></div>
+            <div className='main-container'><GameList /><UserActivity /></div>
 
-
-            <footer>
-                <a
-                    href=""
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    WIP
-                </a>
-            </footer>
         </main>
     </div>);
 }
