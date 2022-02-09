@@ -30,7 +30,7 @@ export default function Home({ data }) {
                         placeholder="Score"
                         ref={score}
                     />
-                    <textarea type="text"
+                    <input type="text"
                         placeholder="Comment"
                         ref={comment}
                     />

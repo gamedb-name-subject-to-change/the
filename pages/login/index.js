@@ -86,11 +86,11 @@ export default function Login({ data }) {
                                 <div className={styles['input-boxes']}>
                                     <div className={styles['input-box']}>
                                         <i className={styles.fas + " " + styles['fa-user']}></i>
-                                        <input type="text" ref={username} placeholder="Enter your username" required />
+                                        <input type="text" ref={username} placeholder="Username" required />
                                     </div>
                                     <div className={styles['input-box']}>
                                         <i className={styles.fas + " " + styles['fa-lock']}></i>
-                                        <input type="password" ref={password} placeholder="Enter your password" required />
+                                        <input type="password" ref={password} placeholder="Password" required />
                                     </div>
                                     {/* <div className={styles.text}><a href="#">Forgot password?</a></div> */}
                                     <div className={styles.button + " " + styles['input-box']}>
@@ -108,15 +108,15 @@ export default function Login({ data }) {
                                 <div className={styles['input-boxes']}>
                                     <div className={styles['input-box']}>
                                         <i className={styles.fas + " " + styles['fa-user']}></i>
-                                        <input type="text" ref={nusername} placeholder="Enter your username" required />
+                                        <input type="text" ref={nusername} placeholder="Username" required />
                                     </div>
                                     <div className={styles['input-box']}>
                                         <i className={styles.fas + " " + styles['fa-envelope']}></i>
-                                        <input type="text" ref={ndisplayName} placeholder="Enter your display name" required />
+                                        <input type="text" ref={ndisplayName} placeholder="Full Name" required />
                                     </div>
                                     <div className={styles['input-box']}>
                                         <i className={styles.fas + " " + styles['fa-lock']}></i>
-                                        <input type="password" ref={npassword} placeholder="Enter your password" required />
+                                        <input type="password" ref={npassword} placeholder="Password" required />
                                     </div >
                                     <div className={styles.button + " " + styles['input-box']}>
                                         <input type="submit" onClick={() => {
