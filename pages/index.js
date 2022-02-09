@@ -21,7 +21,7 @@ export default function Home() {
                 <div className='main-container'><Discover/>
                 <div className='container'>
                 <HotPosts />
-                <News/>
+                <News appId="730"/>
                 </div>
                 </div>
             </main>

@@ -66,17 +66,15 @@ export default function Login({ data }) {
             <div className={styles.container}>
                 {/* <input type="checkbox" id="flip" /> */}
                 <div className={styles.cover} style={{ left: cover }}>
-                    <div className={styles.back} >
+                    <div className={styles.front} >
                         <div className={styles.text}>
-                            <span className={styles['text-1']}>Every new friend is a <br /> new adventure</span><br />
+                            <span className={styles['text-1']}>A new gaming <br/>community is on the rise!</span><br />
 
-                            <span className={styles['text-2']}>Let's get connected</span>
+                            <span className={styles['text-1']}>Let's discover it</span>
                         </div>
                     </div>
                     <div className={styles.back}>
                         <div className={styles.text}>
-                            <span className={styles['text-1']}>Complete miles of journey <br /> with one step</span>
-                            <span className={styles['text-2']}>Let's get started</span>
                         </div>
                     </div>
                 </div>

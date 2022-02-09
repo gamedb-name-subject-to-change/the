@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Component } from 'react';
 import axios from 'axios';
 const parse = require('html-react-parser');
-const News = () => {
+const News = (props) => {
     const [gameNews, setNews] = useState(<></>)
     const renderNews = (res) => {
         let pNews = [];
@@ -21,7 +21,7 @@ const News = () => {
         return (pNews)
     };
     useEffect(async () => {
-        const fetchedNews = await getNews([730])
+        const fetchedNews = await getNews([props.appId])
         console.log(fetchedNews)
         setNews(renderNews(fetchedNews))
     }, [])
