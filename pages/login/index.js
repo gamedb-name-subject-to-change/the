@@ -2,6 +2,7 @@ import axios from 'axios'
 import Head from 'next/head'
 import { useState, useEffect, useRef } from 'react';
 import styles from '../../styles/Login.module.css'
+import NavBar from '../../components/navbar';
 const registerUser = async (formData) => {
     console.log(formData)
     const res = await axios.post('/api/user/register', formData).then(async (res) => await res.data)
@@ -60,6 +61,7 @@ export default function Login({ data }) {
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             {() => window.location.href = '/login?#'}
         </Head>
+        <NavBar/>
         <main className={styles['main-container']}>
             <div className={styles.container}>
                 {/* <input type="checkbox" id="flip" /> */}
