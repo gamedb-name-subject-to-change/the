@@ -17,7 +17,7 @@ const Posts = () => {
             </a>));
         });
         return (
-            <div className="grid">
+            <div className="grid-forum-posts">
                 {posts}
             </div>
         );

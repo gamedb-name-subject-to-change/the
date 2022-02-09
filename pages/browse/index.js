@@ -12,14 +12,14 @@ export default function () {
         let sResults = [];
         res.map((e, i) => {
             sResults.push(<a
-                href={`https://store.steampowered.com/app/`}
+                href={`/game/${e.data.steam_appid}`}
                 className="card" key={i}>
                 <h3>{e.data.name}</h3>
                 <p>
-                    {parse(e.data.about_the_game)}
+                    {parse(e.data.short_description)}
                     {/* {(e.data.about_the_game) ? e.data.about_the_game.substring(0, 180) : e.data.about_the_game}... */}
                 </p>
-                <img className="card-image" src={e.data.background}></img>
+                <img className="card-image" src={e.data.header_image}></img>
 
             </a>);
         });
@@ -31,7 +31,7 @@ export default function () {
         if (currentPage === -1) return;
         // console.log("***************************************changed to page " + (currentPage + 1) + " having items " + (currentPage * 10 + 1) + " to " + (currentPage * 10 + 10));
         let search = searchText.current.value;
-        console.log("HERHEH")
+        setResults(<h1>Loading..</h1>)
         const fetchedData = await getAppData(search, 0)
         // console.log(gameData)/
         // const appIDs = getAppID(search, (currentPage * 10 + 1))//got appids
@@ -64,7 +64,7 @@ export default function () {
                     // results.push(data[i]['appid'])
                     const res = await fetchGameData(data[i]['appid'])
                     let temp = Object.values(res.data)[0]
-                    if (temp.success == true && temp.data.type === 'game') {
+                    if(temp) if (temp.success == true && temp.data.type === 'game') {
                         results.push(temp)
                         count++;
                     }
@@ -98,8 +98,8 @@ export default function () {
             </input>
             <div className="grid">
                 <button onClick={pressed}>Search</button>
-                <button onClick={nextPage}>Next</button>
-                <button onClick={prevPage}>Previous</button>
+                {/* <button onClick={nextPage}>Next</button>
+                <button onClick={prevPage}>Previous</button> */}
             </div>
             <div className="grid-forum-posts">{searchResults}</div>
         </main>
