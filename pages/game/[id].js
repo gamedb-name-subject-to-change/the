@@ -3,7 +3,44 @@ import Head from "next/head";
 import RelatedPosts from '../../components/relatedposts'
 import axios from 'axios';
 const parse = require('html-react-parser');
+import { useState, useRef } from 'react';
 export default function Home({ data }) {
+    const [options, setOptions] = useState(null)
+    const score = useRef(null)
+    const comment = useRef(null)
+    const addToList = async (score, comment) => {
+        if (typeof window === 'undefined') { return; }
+        const token = localStorage.getItem('token')
+        let val = await axios.post(`/api/user/validate`, { token: token }).then(async (res) => await res.data)
+        if (val.status == 'ok') {
+            console.log(val.user,data.steam_appid,score,comment)
+            const res=await axios.post(`/api/user/addtolist`,{user:val.user,appid:data.steam_appid,score,comment}).then(async (res) => await res.data)
+            if(res.status==='ok')alert(`${data.name} added to your list`)
+            else alert('something went wrong')
+        }
+        else {
+            //alert('Something went wrong. Could be that you are not logged in')
+        }
+    }
+    const showOptions = () => {
+        let a = (
+            <div className='container'>
+                <div className="form">
+                    <input type="text"
+                        placeholder="Score"
+                        ref={score}
+                    />
+                    <textarea type="text"
+                        placeholder="Comment"
+                        ref={comment}
+                    />
+                    <button onClick={() => addToList(score.current.value, comment.current.value) }>Submit</button>
+
+                </div>
+            </div>
+        )
+        setOptions(a)
+    }
     return (
         <div className="container">
             <Head>
@@ -16,35 +53,42 @@ export default function Home({ data }) {
                 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
             </Head>
             <NavBar />
-            <main  style={{backgroundImage:data.background}}>
-                <div className='container-forum-posts'>
-                    <div className="image" >
-                        <img src={data.header_image} />
-                    </div>
-                    <div className="text-container" style={{ flex: 1 }}>
-                        <div className="title1">
-                            <h1>{data.name}</h1>
-                        </div>
-                        <div className="descr">
-                            {parse(data.about_the_game)}
+            <main >
+                <div style={{ backgroundImage: `url(${data.background})` }}>
+                    <div className='user-container' style={{ background: `rgba(0,0,0,0)` }} >
+                        <div className="image" style={{ background: `rgba(0,0,0,0)` }}>
+                            <img src={data.header_image} />
                         </div>
                     </div>
-                    <div className="text-container2" style={{ flex: 1 }}>
-                        <div className="grid">
-                            <button className="button">Add to List</button>
-                            <button className='button'><img src="https://www.pinclipart.com/picdir/big/526-5263968_minecraft-heart-png-transparent-minecraft-hunger-bar-clipart.png" width="24" height="24" /></button>
-                        </div>
-                    </div>
-                    <div className='container'>
-                    <div className='grid-forum-posts' >
-                        <RelatedPosts />
-                    </div>
-                    </div>
-                    
                 </div>
+                <div className='game-container' >
 
+                    <div className='container'>
+
+                        <div className="text-container" style={{ flex: 1 }}>
+                            <div className="title1">
+                                <h1>{data.name}</h1>
+                            </div>
+                            <div className="descr">
+                                {parse(data.about_the_game)}
+                            </div>
+                        </div>
+                        <div className="text-container2" style={{ flex: 1 }}>
+                            <div className="game-list" style={{ maxWidth: `50vw` ,maxHeight: `60vh` }}>
+                                <button className="text" onClick={showOptions}>Add to List <img src="https://www.pinclipart.com/picdir/big/526-5263968_minecraft-heart-png-transparent-minecraft-hunger-bar-clipart.png" width="24" height="24" /></button>
+                                {options}
+                            </div>
+                        </div>
+                        <div className='container'>
+                            <div className='grid-forum-posts' >
+                                <RelatedPosts />
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
             </main>
-
             <footer>
                 <a
                     href=""

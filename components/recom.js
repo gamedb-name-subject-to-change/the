@@ -7,7 +7,7 @@ const Top = () => {
         let sResults = [];
         res.map((e, i) => {
             sResults.push(<a
-                href={`https://store.steampowered.com/app/`}
+                href={`/game/${e.data.steam_appid}`}
                 className="card" key={i}>
                 <h3>{e.data.name}</h3>
                 <p>
@@ -25,7 +25,7 @@ const Top = () => {
         const fetchedData = await getAppData()
         setResults(renderResults(fetchedData))
     }, [])
-    return (<div className="container"><h1 className='title'>Recommended Games</h1>{searchResults}</div>)
+    return (<div className="container" style={{minWidth:'50vw',maxWidth:'50vw'}}><h1 className='title'>Discover</h1>{searchResults}</div>)
 }
 async function getAppData() {
     let results = []

@@ -1,5 +1,7 @@
 import axios from 'axios'
 import Head from 'next/head'
+import HotPosts from '../../components/hotposts'
+import GameList from '../../components/userlist'
 import NavBar from '../../components/navbar'
 export default function ({ data }) {
     console.log(data)
@@ -13,8 +15,27 @@ export default function ({ data }) {
             <meta name="author" content="malis" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         </Head>
-        <NavBar/>
-        <main><h1>User Profile</h1>
+        
+        <main>
+        <NavBar />
+            <div className='user-container'>
+                <div className='grid' style={{background:`rgba(0,0,0,0)`}} >
+                    <h1 style={{background:`rgba(0,0,0,0)`}}>{data.displayName}</h1>
+                </div>
+            </div>
+
+            <div className='main-container'><GameList /><HotPosts /></div>
+
+
+            <footer>
+                <a
+                    href=""
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    WIP
+                </a>
+            </footer>
         </main>
     </div>);
 }

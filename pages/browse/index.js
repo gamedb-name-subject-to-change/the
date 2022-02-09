@@ -64,7 +64,7 @@ export default function () {
                     // results.push(data[i]['appid'])
                     const res = await fetchGameData(data[i]['appid'])
                     let temp = Object.values(res.data)[0]
-                    if(temp) if (temp.success == true && temp.data.type === 'game') {
+                    if (temp) if (temp.success == true && temp.data.type === 'game') {
                         results.push(temp)
                         count++;
                     }
@@ -93,15 +93,19 @@ export default function () {
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         </Head>
         <NavBar />
-        <main><h1>Game Browser</h1>
-            <input type="text" placeholder="Search.." id="searchbox" ref={searchText}>
-            </input>
-            <div className="grid">
-                <button onClick={pressed}>Search</button>
+        <main><div className="container" style={{ minWidth: '60vw', alignItems: 'center', justifyContent: 'top' }}>
+
+            <div className="grid" style={{ maxHeight: '20vh' }}>
+                <h1>Find Games</h1>
+
+                <input style={{ minWidth: '40vw' }} type="text" placeholder="Search.." id="searchbox" ref={searchText}>
+                </input>
+                <button style={{ margin: '1rem' }} onClick={pressed}>Search</button>
                 {/* <button onClick={nextPage}>Next</button>
                 <button onClick={prevPage}>Previous</button> */}
             </div>
             <div className="grid-forum-posts">{searchResults}</div>
+        </div>
         </main>
     </div>);
 }

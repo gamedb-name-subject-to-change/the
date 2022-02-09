@@ -1,6 +1,7 @@
 import React, { useReducer, useEffect } from 'react';
 import Head from 'next/head'
 import NavBar from '../../components/navbar'
+import axios from 'axios';
 const Posts = () => {
     const defaultState = {
         page: <div>Loading...</div>,
@@ -63,14 +64,6 @@ const Posts = () => {
                 <form className="form">
                     <input
                         type="text"
-                        name="author"
-                        placeholder="Post as"
-                        onChange={event => {
-                            dispatch({ type: 'AUTHOR', value: event.target.value })
-                        }}
-                    />
-                    <input
-                        type="text"
                         name="title"
                         placeholder="Title"
                         onChange={event => {
@@ -93,12 +86,15 @@ const Posts = () => {
                             dispatch({ type: 'TAGS', value: event.target.value })
                         }}
                     />
-                    <button type="button" onClick={() => dispatch({ type: 'FORMDATA', value: formData })}>
-                        Publish
-                    </button>
-                    <button type="button" onClick={() => window.location = "/"}>
-                        Cancel
-                    </button>
+                    <div>
+                        <button type="button" onClick={() => dispatch({ type: 'FORMDATA', value: formData })}>
+                            Publish
+                        </button>
+                        <button type="button" onClick={() => window.location = "/"}>
+                            Cancel
+                        </button>
+                    </div>
+
                 </form>
             </div>)
         })
@@ -129,6 +125,18 @@ const Posts = () => {
     }, [pageNumber, search]);
     useEffect(async () => {
         if (!finalFormData) return;
+        if (finalFormData) {
+            if (typeof window === 'undefined') { return; }
+            const token = localStorage.getItem('token')
+            const res = await axios.post('/api/user/validate', { token: token }).then(async (res) => await res.data)
+            if (res.status != 'ok') {
+                alert(`you're not logged in`)
+                return
+            }
+            else {
+                dispatch({ type: 'AUTHOR', value: res.user })
+            }
+        }
         console.log(formData, "FINAL");
         let options = {
             method: 'POST',

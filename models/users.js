@@ -20,8 +20,7 @@ const Schema = new mongoose.Schema({
         appId: { type: Number, required: true },
         score: { type: Number },
         status: { type: String },
-        comment: { type: Number },
-        genre: { type: String }
+        comment: { type: String },
     }],
     posts: [{
         postId: { type: Number, required: true },

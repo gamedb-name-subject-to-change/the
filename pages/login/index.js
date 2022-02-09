@@ -3,8 +3,8 @@ import Head from 'next/head'
 import { useState, useEffect, useRef } from 'react';
 import styles from '../../styles/Login.module.css'
 const registerUser = async (formData) => {
-    console.log('here')
-    const res = await axios.post('/api/user/register', { formData }).then(async (res) => await res.data)
+    console.log(formData)
+    const res = await axios.post('/api/user/register', formData).then(async (res) => await res.data)
     if (res.status === 'ok') {
         alert('success. please login again using your credentials')
         window.location.href = '/'

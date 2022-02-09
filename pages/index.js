@@ -2,6 +2,7 @@ import Head from 'next/head'
 import HotPosts from '../components/hotposts'
 import Activity from '../components/activity'
 import NavBar from '../components/navbar'
+import Discover from '../components/recom'
 export default function Home() {
     return (
         <div className="container">
@@ -16,7 +17,8 @@ export default function Home() {
             </Head>
             <NavBar />
             <main>  
-                <div className='main-container'><Activity /><HotPosts /></div>
+                <div className='main-container'><Discover/><HotPosts /></div>
+                
 
             </main>
 
