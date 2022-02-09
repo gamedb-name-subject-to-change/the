@@ -7,7 +7,7 @@ export default function ({ data }) {
     console.log(data)
     return (<div className="container">
         <Head>
-            <title>GameDB User Profile</title>
+            <title>User Profile</title>
             <link rel="icon" href="/favicon.ico" />
             <meta charSet="UTF-8" />
             <meta name="description" content="No Description" />

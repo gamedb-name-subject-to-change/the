@@ -146,11 +146,11 @@ const Posts = () => {
     return (
         <div className="container" >
             <Head>
-                <title>GameDB Forums</title>
+                <title>Forums</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <NavBar />
-            <h1 className='title' style={{ margin: '1rem' }}>GameDB Forums</h1>
+            <h1 className='title' style={{ margin: '1rem' }}>Forums</h1>
             <div>
                 {page}
             </div>

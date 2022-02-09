@@ -4,7 +4,7 @@ import NavBar from '../../components/navbar'
 export default function Post({ data }) {
     return (<div className="container">
         <Head>
-            <title>GameDB Forum Post</title>
+            <title>{data.title}</title>
             <link rel="icon" href="/favicon.ico" />
             <meta charSet="UTF-8" />
             <meta name="description" content="No Description" />

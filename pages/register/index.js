@@ -22,7 +22,7 @@ export default function ({ data }) {
     }, [formData])
     return (<div className="container">
         <Head>
-            <title>GameDB Login</title>
+            <title>vent</title>
             <link rel="icon" href="/favicon.ico" />
             <meta charSet="UTF-8" />
             <meta name="description" content="No Description" />
