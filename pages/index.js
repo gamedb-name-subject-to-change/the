@@ -3,6 +3,7 @@ import HotPosts from '../components/hotposts'
 import Activity from '../components/activity'
 import NavBar from '../components/navbar'
 import Discover from '../components/recom'
+import News from '../components/news'
 export default function Home() {
     return (
         <div className="container">
@@ -17,9 +18,12 @@ export default function Home() {
             </Head>
             <NavBar />
             <main>  
-                <div className='main-container'><Discover/><HotPosts /></div>
-                
-
+                <div className='main-container'><Discover/>
+                <div className='container'>
+                <HotPosts />
+                <News/>
+                </div>
+                </div>
             </main>
         </div>
     )
