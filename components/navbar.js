@@ -8,7 +8,7 @@ export default function () {
         const res =await  axios.post('/api/user/validate', { token: token }).then(async (res) => await res.data)
         if (res.status == 'ok') {
             console.log(res)
-            setUserButtons(<div className="navbar-button" onClick={() => window.location.href = `/user/${res.user}`}>Profile</div>)
+            setUserButtons([<div className="navbar-button" onClick={() => window.location.href = `/user/${res.user}`}>Profile</div>,<div className="navbar-button" onClick={() => {localStorage.setItem('token',null);window.location.href = `/`}}>Logout</div>])
         }
         else{
             console.log(res)
