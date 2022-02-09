@@ -7,11 +7,10 @@ const Posts = () => {
         page: <div>Loading...</div>,
         pageNumber: 0,
         search: '',
-        formData: { author: null, title: null, content: null, tags: null },
+        formData: { author: undefined, title: null, content: null, tags: null },
         finalFormData: undefined,
     }
     const reducer = (state, action) => {
-        console.log(state.formData)
         switch (action.type) {
             case 'PAGE': return { ...state, page: action.value }; break;
             case 'PAGENUMBER': return { ...state, pageNumber: action.value }; break;
@@ -133,32 +132,14 @@ const Posts = () => {
                 alert(`you're not logged in`)
                 return
             }
-            else {
-                dispatch({ type: 'AUTHOR', value: res.user })
-            }
+            
+            let fin={...formData,author:res.user}
+            console.log(fin, "FINAL");
+            const qu = await axios.post('/api/forum/post', fin).then(async (res) => await res.data) 
+            if(qu.status==='ok'){alert('Post published successfully')
+            window.location.href=`/posts/${qu.id}`
         }
-        console.log(formData, "FINAL");
-        let options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-            body: JSON.stringify(formData)
         }
-        await fetch('/api/forum/post', options)
-            .then(async (response) => {
-                return response.json().then(function (json) {
-                    return response.ok ? json : Promise.reject(json);
-                });
-            })
-            .then((data) => {
-                console.log(data.id);
-                dispatch({ type: "FORMDATA", value: undefined })
-                window.alert("Your post has been published successfully");
-                window.location = `/posts/${data.id}`;
-            })
-            .catch((e) => { console.log(e) })
     }, [finalFormData]);
     return (
         <div className="container">

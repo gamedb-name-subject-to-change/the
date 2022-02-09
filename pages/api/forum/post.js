@@ -16,5 +16,5 @@ export default async  function handler(req, res) {
     let {author,title,content,tags}=req.body;
     const query=await Posts.create({author,title,content,tags,date: `${(new Date().getDate())}/${(new Date().getMonth())}/${(new Date().getFullYear())} ${(new Date().getHours())}:${(new Date().getMinutes())}`})
     console.log(query);
-    res.status(200).json({ id: query._id })
+    res.status(200).json({ status:'ok',id: query._id })
 }
