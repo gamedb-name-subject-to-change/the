@@ -79,9 +79,6 @@ export default function () {
         }
         return results;
     }
-    async function verify() {
-
-    }
     return (<div className="container">
         <Head>
             <title>GameDB Browser</title>

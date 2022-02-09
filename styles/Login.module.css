@@ -9,8 +9,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* background: #2ae85a; */
-    background-image: url("../public/loginbg.jpg");
+    background: #3F3351;
+    background-image: url("../src/loginbg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -70,7 +70,7 @@
     width: 100%;
     border-radius: 6.2%;
     background: #7d2ae8;
-    background-image: url("../public/cardbg.jpeg");
+    background-image: url("../src/cardbg.jpeg");
     z-index: 12;
 }
 
@@ -118,6 +118,7 @@
     width: 100%;
     padding: 30px 30px;
     border-radius: 6%;
+    background-color: #1F1D36
 }
 
 .container .form-content {

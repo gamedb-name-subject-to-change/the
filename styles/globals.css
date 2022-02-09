@@ -28,7 +28,7 @@ body {
     margin-top: 3rem;
 }
 .container {
-    background-color: #091928;
+    background-color: #1F1D36;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -42,27 +42,27 @@ body {
 }
 .container-navbar{
     min-width: 100vw;
-    background-color:  	#1b3147;
+    background-color:  	#3F3351;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    border: 1px solid #1b3147;
+    border: 1px solid #3F3351;
     transition: color 0.15s ease, border-color 0.15s ease;
 }
 .container-navbar h1{
     min-width: 60vw;    
     margin: 1rem;
-    background-color: 	#1b3147;
+    background-color: 	#3F3351;
 }
 .container-navbar a{
-    background-color: 	#1b3147;
+    background-color: 	#3F3351;
 }
 
 .navbar-button{ 
     align-items: center;
     justify-content: center;
-    background: #1b3147;
+    background: #3F3351;
     box-sizing: border-box;
     border: 0;
     border-radius: 990px;
@@ -132,7 +132,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #091928;
+    background-color: #1F1D36;
 }
 
 img {
@@ -227,7 +227,7 @@ input {
     font: inherit;
     max-width: 800px;
     margin-top: 2rem;
-    background-color:  	#1b3147
+    background-color:  	#3F3351
 }
 textarea{
     display: flex;
@@ -240,7 +240,7 @@ textarea{
     font: inherit;
     max-width: 800px;
     margin-top: 2rem;
-    background-color:  	#1b3147
+    background-color:  	#3F3351
 }
 button{
     display: flex;
@@ -265,8 +265,8 @@ button{
     text-align: left;
     color: inherit;
     text-decoration: none;
-    background-color: #0c2032;
-    border: 1px solid  	#0c2032;
+    background-color: #4b4a5e;
+    border: 1px solid  	#4b4a5e;
     border-radius: 10px;
     transition: color 0.15s ease, border-color 0.15s ease;
 }
@@ -280,14 +280,14 @@ button{
 
 .card h3 {
     margin: 0 0 1rem 0;
-    background-color: #0c2032;
+    background-color: #4b4a5e;
     font-size: 1.5rem;
 }
 
 .card p {
     margin: 0;
     font-size: 1rem;
-    background-color: #0c2032;
+    background-color: #4b4a5e;
     line-height: 1.5;
 
 }
@@ -296,7 +296,7 @@ button{
     margin: 0;
     font-size: 0.75rem;
     line-height: 1.5;
-    background-color: #0c2032;
+    background-color: #4b4a5e;
 
 }
 
@@ -415,8 +415,8 @@ button{
     text-align: left;
     color: inherit;
     text-decoration: none;
-    background-color: #0c2032;
-    border: 1px solid  	#0c2032;
+    background-color: #4b4a5e;
+    border: 1px solid  	#4b4a5e;
     border-radius: 10px;
     transition: color 0.15s ease, border-color 0.15s ease;
 }
@@ -429,7 +429,7 @@ button{
 }
 .game-list-item img{
     max-height: 15vh;
-    border: 0px solid  	#0c2032;
+    border: 0px solid  	#4b4a5e;
     border-radius: 10px;
 }
 .game-list-item span{

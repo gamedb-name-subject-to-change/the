@@ -17,7 +17,7 @@ const Posts = () => {
             </a>));
         });
         return (
-            <div className="grid">
+            <div className="container">
                 {posts}
             </div>
         );
