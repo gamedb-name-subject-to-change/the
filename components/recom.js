@@ -23,6 +23,7 @@ const Top = () => {
     };
     useEffect(async () => {
         const fetchedData = await axios.get('/api/top/get').then(async (res) => await res.data)
+        console.log(fetchedData)
         setResults(renderResults(fetchedData.data))
     }, [])
     return (<div className="container" style={{minWidth:'50vw',maxWidth:'50vw'}}><h1 className='title'>Discover</h1>{searchResults}</div>)
