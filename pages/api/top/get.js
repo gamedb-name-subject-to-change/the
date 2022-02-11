@@ -12,7 +12,7 @@ export default async function handler(req, res) {
         const res = await axios.get(url).then(async (res) => await res.data).catch(e => { })
         if (res) {
             let temp = Object.values(res)[0]
-            console.log(Object.keys(temp))
+            results.push(temp.data)
         }
     }
     res.json({ data: results })
