@@ -1,7 +1,6 @@
 
 import axios from 'axios';
 export default async function handler(req, res) {
-    console.error("HERE")
     const appIDs = require('../../../topgames.json')
     const results = []
     let data = Object.values(appIDs)
