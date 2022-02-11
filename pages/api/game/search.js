@@ -9,8 +9,18 @@ mongoose.connect(uri,
         useUnifiedTopology: true
     }
 );
-
-const  GameDB= mongoose.models.gdbsteam
+const Schema = new mongoose.Schema({
+    appid: {
+        type: String,
+        required: true,
+        unique: true,
+    },
+    name:{
+        type: String,
+        required: true,
+    }
+});
+const  GameDB= mongoose.models.gdbsteam || mongoose.model("gdbsteam", Schema);
 async function fetchGameData(appID) {
     const res = await axios.post('/api/game/get', { id: appID }).then(async (res) => await res.data)
     return res;
