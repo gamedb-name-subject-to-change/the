@@ -1,9 +1,17 @@
 import mongoose from 'mongoose';
 import axios from 'axios';
+const uri = process.env.MongoSecret
+mongoose.connect(uri,
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    }
+);
+const  GameDB= mongoose.models.gdbsteam
 export default async function handler(req, res) {
     const { id } = req.body;
     if (req.method == 'GET') {
-        const data = require('../../../database.json')['applist']['apps']
+        const data =  await GameDB.find({}, { name: 1 })
         const paths = data.map((e) => {
             return e['appid']
         })
