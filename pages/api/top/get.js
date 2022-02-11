@@ -8,8 +8,8 @@ export default async function handler(req, res) {
     let select=data.slice(randint, randint + 10)
     for (const e of select) {
         const res = await fetchGameData(e.appid)
-        let temp = Object.values(res.data)[0]
-        console.log(temp)
+        // let temp = Object.values(res.data)[0]
+        console.log(res)
         results.push(temp.data)
     }
     res.json({data:results})
