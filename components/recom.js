@@ -22,34 +22,9 @@ const Top = () => {
         return (sResults)
     };
     useEffect(async () => {
-        const fetchedData = await getAppData()
-        setResults(renderResults(fetchedData))
+        const fetchedData = await axios.get('/api/top/get').then(async (res) => await res.data)
+        setResults(renderResults(fetchedData.data))
     }, [])
     return (<div className="container" style={{minWidth:'50vw',maxWidth:'50vw'}}><h1 className='title'>Discover</h1>{searchResults}</div>)
 }
-async function getAppData() {
-    let results = []
-    const appIDs = await fetchTopGames()
-    let data=Object.values(appIDs.data)
-    let randint = getRandomInt(90)
-    for (let i = randint; i < randint+10; i++) {
-        const res = await fetchGameData(data[i].appid)
-        let temp = Object.values(res.data)[0]
-        if (temp.success == true && temp.data.type === 'game')
-            results.push(temp)
-    }
-    return results;
-}
-
-async function fetchGameData(appID) {
-    const res = await axios.post('/api/game/get', { id: appID }).then(async (res) => await res.data)
-    return res;
-}
-async function fetchTopGames() {
-    const res = await axios.post('/api/top/get').then(async (res) => await res.data)
-    return res;
-}
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-  }
 export default Top;

@@ -1,6 +1,24 @@
 
 import axios from 'axios';
 export default async function handler(req, res) {
-    const result = require('../../../topgames.json')
-    res.json({data:result})
+    const appIDs = require('../../../topgames.json')
+    let results = []
+    let data = Object.values(appIDs)
+    let randint = getRandomInt(90)
+    for (const e in data.slice(randint, randint + 10)) {
+        const res = await fetchGameData(e.appid)
+        let temp = Object.values(res.data)[0]
+        if (temp.success == true && temp.data.type === 'game')
+            results.push(temp)
+    }
+    res.json({data:results})
+}
+
+async function fetchGameData(appID) {
+    const url = `https://store.steampowered.com/api/appdetails?appids=${appID}`
+    const res = await axios.get(url).then(async (res) => await res.data)
+    return res;
+}
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
 }
