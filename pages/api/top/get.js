@@ -10,7 +10,7 @@ export default async function handler(req, res) {
         const url = `https://store.steampowered.com/api/appdetails?appids=${e.appid}`
         const res = await axios.get(url).then(async (res) => await res.data).catch(e=>{})
         let temp = Object.values(res.data)[0]
-        if(temp) if(temp.success==true) results.push(temp.data)
+        console.log(Object.keys(temp))
     }
     res.json({ data: results })
 
