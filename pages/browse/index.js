@@ -7,6 +7,7 @@ const parse = require('html-react-parser');
 export default function () {
     const [button, clickButton] = useState(-1);
     const [more, getMore] = useState(-1);
+    const [text ,setText]=useState(null)
     const [searchResults, setResults] = useState(<></>)
     const [moreButton, setMoreButton] = useState(undefined)
     const searchText = useRef(null)
@@ -30,16 +31,14 @@ export default function () {
         }))
         if (res.more === true) {
             setMoreButton(
-                <button style={{ margin: '1rem' }} onClick={pressed}>Load more</button>
+                <button style={{ margin: '1rem' ,cursor:"pointer"}} onClick={pressed}>Load more</button>
             )
         }
     };
 
     useEffect(async () => {
         if (button === -1) return;
-        let search = searchText.current.value;
-        setMoreButton(undefined)
-        await renderResults(search,(moreButton)?true:undefined)
+        await renderResults(text,(moreButton)?true:undefined)
     }, [button])
     
     return (<div className="container">
@@ -60,7 +59,11 @@ export default function () {
 
                 <input className="" style={{ minWidth: '40vw' }} type="text" placeholder="Search.." id="searchbox" ref={searchText}>
                 </input>
-                <button style={{ margin: '1rem' }} onClick={pressed}>Search</button>
+                <button style={{ margin: '1rem' ,cursor:"pointer"}} onClick={()=>{
+                    setText(searchText.current.value)
+                    setMoreButton(undefined)
+                    pressed()
+                    }}>Search</button>
                 {/* <button onClick={nextPage}>Next</button>
                 <button onClick={prevPage}>Previous</button> */}
             </div>

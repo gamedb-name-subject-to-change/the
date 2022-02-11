@@ -5,7 +5,7 @@ export default async function handler(req, res) {
     let results = []
     let data = Object.values(appIDs)
     let randint = getRandomInt(90)
-    for (const e in data.slice(randint, randint + 10)) {
+    for (const e of data.slice(randint, randint + 10)) {
         const res = await fetchGameData(e.appid)
         let temp = Object.values(res.data)[0]
         if (temp.success == true && temp.data.type === 'game')
