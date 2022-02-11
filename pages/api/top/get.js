@@ -5,18 +5,17 @@ export default async function handler(req, res) {
     const results = []
     let data = Object.values(appIDs)
     let randint = Math.floor(Math.random() * 90);
-    let select=data.slice(randint, randint + 10)
+    let select = data.slice(randint, randint + 10)
     for (const e of select) {
-        const res = await fetchGameData(e.appid)
+        const url = `https://store.steampowered.com/api/appdetails?appids=${appID}`
+        const res = await axios.get(url).then(async (res) => await res.data)
         let temp = Object.values(res.data)[0]
-        results.push(temp.data)
+        if(temp) if(temp.success==true)results.push(temp.data)
     }
     res.json({ data: results })
 
 }
 
 async function fetchGameData(appID) {
-    const url = `https://store.steampowered.com/api/appdetails?appids=${appID}`
-    const res = await axios.get(url).then(async (res) => await res.data)
-    return res;
+
 }
