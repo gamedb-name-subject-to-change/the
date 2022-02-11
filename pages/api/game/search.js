@@ -34,9 +34,10 @@ export default async function handler(req, res) {
         matches = await  GameDB.find( { name: regex } )
     }
     console.log(text, matches.length)
-    let Q=matches.slice[index,index+6]
+    let Q=matches.slice[index]
     console.log('Q -------- ',Q)
     index=index+6;
+    console.log('index-------- ',index)
     for(let i in Q){
         let url = `https://store.steampowered.com/api/appdetails?appids=${Q[i].appid}`
         let res = await axios.get(url).then(async (res) => await res.data)
