@@ -34,11 +34,14 @@ export default async function handler(req, res) {
         matches = await  GameDB.find( { name: regex } )
     }
     console.log(text, matches.length)
-    for(let i =index;i<index+6;i++){
+    let count=0;
+    for(let i in matches){
+        if(i<index)i=index;
         let url = `https://store.steampowered.com/api/appdetails?appids=${matches[i].appid}`
-        let res = await axios.get(url).then(async (res) => await res.data)
+        let res = await axios.get(url).then(async (res) => await res.data).catch(e=>{console.log(e)})
         let temp=Object.values(res)[0].data
         results.push[temp];
+        if(++count==6)break;
     }
     index=index+6;
     console.log(results)   
