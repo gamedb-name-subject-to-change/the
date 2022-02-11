@@ -36,7 +36,7 @@ export default async function handler(req, res) {
     console.log(text, matches.length)
     let Q=matches.slice(index,index+6)
     index=index+6;
-    for(let e of Q){
+    for(const e of Q){
         let url = `https://store.steampowered.com/api/appdetails?appids=${e.appid}`
         let res = await axios.get(url).then(async (res) => await res.data)
         let temp=Object.values(res)[0].data

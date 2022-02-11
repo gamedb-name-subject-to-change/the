@@ -15,10 +15,10 @@ export default function () {
     }
     const renderResults = async (search, more) => {
         const res = await axios.post('/api/game/search', { text: search, more }).then(async (res) => await res.data)
-        setResults(res.data.map((e, i) => {
+        let temp=res.data.map((e, i) => {
             return (<a
                 href={`/game/${e.steam_appid}`}
-                className="card" style={{ background: `url(${e.background}` }} key={i}>
+                className="card" key={i}>
                 <h3>{e.name}</h3>
                 <p>
                     {parse(e.short_description)}
@@ -27,7 +27,9 @@ export default function () {
                 <img className="card-image" src={e.header_image}></img>
 
             </a>);
-        }))
+        })
+        temp=searchResults.concat(temp)
+        setResults(temp)
         if (res.more === true) {
             setMoreButton(
                 <button style={{ margin: '1rem' }} onClick={pressed}>Load more</button>
