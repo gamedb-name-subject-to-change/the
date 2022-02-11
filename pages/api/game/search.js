@@ -38,7 +38,7 @@ export default async function handler(req, res) {
     for(const e of matches){
         let url = `https://store.steampowered.com/api/appdetails?appids=${e.appid}`
         let res = await axios.get(url).then(async (res) => await res.data).catch(e=>{console.log('eerrr')})
-        let temp=Object.values(res)[0].data
+        console.log(res,e.appid)
         results.push[temp];
     }
     console.log(results)   
