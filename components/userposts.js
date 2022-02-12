@@ -25,13 +25,13 @@ const Posts = (props) => {
     };
     useEffect(async() => {
         const data=await axios.post('/api/forum/get',{count:5,byUser: props.user}).then(async (res)=>await res.data);
-        if (data.posts.length == 0 && !((search) ? (search.trim().length == 0) ? false : true : true)) return
+        if (data.posts.length == 0){ setPosts(<h1 className='card'>No activity</h1>);return }
         let temp = renderPosts(data.posts)
         setPosts(temp)
     }, []);
     return (
         <div>
-            <h1 className='title'>Recent Forum Activity</h1>
+            <h1 className='title'>Forum Activity</h1>
             {posts}
         </div>
     );

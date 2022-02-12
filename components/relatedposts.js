@@ -29,7 +29,7 @@ const RelatedPosts = ({props}) => {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
             },
-            body:JSON.stringify({count:3})
+            body:JSON.stringify({count:5})
         }
         fetch('/api/forum/get', options)
             .then(async (response) => {
@@ -47,7 +47,7 @@ const RelatedPosts = ({props}) => {
     }, []);
     return (
         <div>
-            <h1 className='title'>Forum Activity</h1>
+            <h1 className='title'>Recent Discussions</h1>
             {posts}
         </div>
     );
