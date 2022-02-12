@@ -20,12 +20,13 @@ export default async function handler(req, res) {
         res.status(200).json(paths)
         return;
     }
-    else if(byUser&&count){
-        let posts=await Posts.find({"author":byUser}).sort({ _id: -1 }).limit(count)
-        res.status(200).json({ posts })
-    }
     else if(forGame&&count){
         let posts=await Posts.find({$or:[{"tags":new RegExp(forGame.name,"gi")},{"tags":new RegExp(forGame.appid,"gi")}]}).sort({ _id: -1 }).limit(count)
+        console.log(posts,forGame)
+        res.status(200).json({ posts })
+    }
+    else if(byUser&&count){
+        let posts=await Posts.find({"author":byUser}).sort({ _id: -1 }).limit(count)
         res.status(200).json({ posts })
     }
     else if(id){
