@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import axios from 'axios';
 const RelatedPosts = ({props}) => {
     const [posts, setPosts] = useState(null)
     const renderPosts = (data) => {
