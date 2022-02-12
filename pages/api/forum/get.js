@@ -13,7 +13,7 @@ db.once("open", function () {
     console.log("Connected to Mongo");
 });
 export default async function handler(req, res) {
-    const { requestCount, keywords,id,byUser,count} = req.body;
+    const { requestCount, keywords,id,byUser,forGame,count} = req.body;
     if (req.method==='GET') {
         let data = await Posts.find({}, { _id: 1 })
         let paths = data.map((item) => { return item._id.valueOf() })
@@ -22,6 +22,10 @@ export default async function handler(req, res) {
     }
     else if(byUser&&count){
         let posts=await Posts.find({"author":byUser}).sort({ _id: -1 }).limit(count)
+        res.status(200).json({ posts })
+    }
+    else if(forGame&&count){
+        let posts=await Posts.find({$or:[{"tags":new RegExp(forGame.name,"gi")},{"tags":new RegExp(forGame.appid,"gi")}]}).sort({ _id: -1 }).limit(count)
         res.status(200).json({ posts })
     }
     else if(id){

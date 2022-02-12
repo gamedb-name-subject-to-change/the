@@ -16,34 +16,16 @@ const RelatedPosts = ({props}) => {
                 <span>by {e.author} on {e.date}</span>
             </a>));
         });
-        return (
+        setPosts(
             <div className="grid-forum-posts">
                 {posts}
             </div>
         );
     };
-    useEffect(() => {
-        let options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-            body:JSON.stringify({count:5})
-        }
-        fetch('/api/forum/get', options)
-            .then(async (response) => {
-                return response.json().then(function (json) {
-                    return response.ok ? json : Promise.reject(json);
-                });
-            })
-            .then((data) => {
-                if (data.posts.length == 0 && !((search) ? (search.trim().length == 0) ? false : true : true)) return
-                let temp=renderPosts(data.posts)
-                setPosts(temp)
-
-            }).then()
-            .catch((e) => console.log(e))
+    useEffect(async() => {
+        const data=await axios.post('/api/forum/get',{count:5,forGame:{appid: props.appid,name:props.name}}).then(async (res)=>await res.data);
+        if (data.posts.length == 0){ setPosts(<h1 className='card'>No Discussions</h1>);return }
+        renderPosts(data.posts)
     }, []);
     return (
         <div>

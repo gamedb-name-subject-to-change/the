@@ -83,7 +83,7 @@ export default function Home({ data }) {
                             </div>
                             <div className='container'>
                                 <div className='container' >
-                                    <RelatedPosts />
+                                    <RelatedPosts appid={data.steam_appid} name={data.name}/>
                                 </div>
                             </div>
 
