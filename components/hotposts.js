@@ -1,20 +1,10 @@
 import React, { useState, useEffect } from 'react';
-
+import Post from './post';
 const Posts = () => {
     const [posts, setPosts] = useState(null)
     const renderPosts = (data) => {
-        let posts = [];
-        data.map((e, i) => {
-            posts.push((<a
-                href={`/posts/${e._id}`}
-                className="card" key={i}
-            >
-                <h3>{e.title}</h3>
-                <p>
-                    {(e.content) ? e.content.substring(0, 70) : e.content}...
-                </p>
-                <span>by {e.author} on {e.date}</span>
-            </a>));
+        let posts = data.map((e, i) => {
+            return (<Post data={e} key={i}/>);
         });
         return (
             <div className="container">

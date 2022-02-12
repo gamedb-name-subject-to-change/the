@@ -2,6 +2,7 @@ import React, { useReducer, useEffect } from 'react';
 import Head from 'next/head'
 import NavBar from '../../components/navbar'
 import axios from 'axios';
+import Post from '../../components/post';
 const Posts = () => {
     const defaultState = {
         page: <div>Loading...</div>,
@@ -25,18 +26,8 @@ const Posts = () => {
     const [state, dispatch] = useReducer(reducer, defaultState);
     const { page, prevPage, pageNumber, search, formData, finalFormData } = state;
     const renderPosts = (data) => {
-        let posts = [];
-        data.map((e, i) => {
-            posts.push((<a
-                href={`/posts/${e._id}`}
-                className="card" key={i}
-            >
-                <h3>{e.title}</h3>
-                <p>
-                    {(e.content) ? e.content.substring(0, 200) : e.content}...
-                </p>
-                <span>by {e.author} on {e.date}</span>
-            </a>));
+        let posts = data.map((e, i) => {
+            return (<Post data={e} key={i}/>);
         });
         return (
             <div className='container'>
