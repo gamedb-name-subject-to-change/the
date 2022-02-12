@@ -30,7 +30,7 @@ const RelatedPosts = (props) => {
     }, []);
     return (
         <div>
-            <h1 className='title'>Recent Discussions</h1>
+            <h1 className='title' style={{margin:'1rem'}}>Recent Discussions</h1>
             {posts}
         </div>
     );
