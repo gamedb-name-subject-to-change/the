@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Posts = () => {
+const RelatedPosts = ({props}) => {
     const [posts, setPosts] = useState(null)
     const renderPosts = (data) => {
         let posts = [];
@@ -54,4 +54,4 @@ const Posts = () => {
 }
 
 
-export default Posts;
+export default RelatedPosts;

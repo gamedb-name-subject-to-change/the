@@ -24,7 +24,7 @@ export default function ({ data }) {
                 </div>
             </div>
 
-            <div className='main-container'><GameList /><UserActivity /></div>
+            <div className='main-container'><GameList /><UserActivity user={data.username}/></div>
 
         </main>
     </div>);

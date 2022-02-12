@@ -1,6 +1,7 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 
-const Posts = () => {
+const Posts = (props) => {
     const [posts, setPosts] = useState(null)
     const renderPosts = (data) => {
         let posts = [];
@@ -22,32 +23,15 @@ const Posts = () => {
             </div>
         );
     };
-    useEffect(() => {
-        let options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            },
-            body:JSON.stringify({count:3})
-        }
-        fetch('/api/forum/get', options)
-            .then(async (response) => {
-                return response.json().then(function (json) {
-                    return response.ok ? json : Promise.reject(json);
-                });
-            })
-            .then((data) => {
-                if (data.posts.length == 0 && !((search) ? (search.trim().length == 0) ? false : true : true)) return
-                let temp=renderPosts(data.posts)
-                setPosts(temp)
-
-            }).then()
-            .catch((e) => console.log(e))
+    useEffect(async() => {
+        const data=await axios.post('/api/forum/get',{count:5,byUser: props.user}).then(async (res)=>await res.data);
+        if (data.posts.length == 0 && !((search) ? (search.trim().length == 0) ? false : true : true)) return
+        let temp = renderPosts(data.posts)
+        setPosts(temp)
     }, []);
     return (
         <div>
-            <h1 className='title'>User Activity</h1>
+            <h1 className='title'>Recent Forum Activity</h1>
             {posts}
         </div>
     );
