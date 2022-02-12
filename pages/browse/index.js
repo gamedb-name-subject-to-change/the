@@ -5,80 +5,42 @@ const axios = require('axios')
 const parse = require('html-react-parser');
 
 export default function () {
-    const data = require('../../database.json')['applist']['apps']
-    const [currentPage, setCurrentPage] = useState(-1)
+    const [button, clickButton] = useState(-1);
+    const [more, getMore] = useState(-1);
+    const [text ,setText]=useState(null)
     const [searchResults, setResults] = useState(<></>)
-    const renderResults = (res) => {
-        let sResults = [];
-        res.map((e, i) => {
-            sResults.push(<a
-                href={`/game/${e.data.steam_appid}`}
+    const [moreButton, setMoreButton] = useState(undefined)
+    const searchText = useRef(null)
+    function pressed() {
+        clickButton((button == 1) ? 0 : 1)
+    }
+    const renderResults = async (search, more) => {
+        const res = await axios.post('/api/game/search', { text: search, more }).then(async (res) => await res.data)
+        setResults(res.data.map((e, i) => {
+            return (<a
+                href={`/game/${e.steam_appid}`}
                 className="card" key={i}>
-                <h3>{e.data.name}</h3>
+                <h3>{e.name}</h3>
                 <p>
-                    {parse(e.data.short_description)}
+                    {parse(e.short_description)}
                     {/* {(e.data.about_the_game) ? e.data.about_the_game.substring(0, 180) : e.data.about_the_game}... */}
                 </p>
-                <img className="card-image" src={e.data.header_image}></img>
+                <img className="card-image" src={e.header_image}></img>
 
             </a>);
-        });
-        console.log(sResults)
-        return (sResults)
+        }))
+        if (res.more === true) {
+            setMoreButton(
+                <button style={{ margin: '1rem' ,cursor:"pointer"}} onClick={pressed}>Load more</button>
+            )
+        }
     };
 
     useEffect(async () => {
-        if (currentPage === -1) return;
-        // console.log("***************************************changed to page " + (currentPage + 1) + " having items " + (currentPage * 10 + 1) + " to " + (currentPage * 10 + 10));
-        let search = searchText.current.value;
-        setResults(<h1>Loading..</h1>)
-        const fetchedData = await getAppData(search, 0)
-        // console.log(gameData)/
-        // const appIDs = getAppID(search, (currentPage * 10 + 1))//got appids
-        setResults(renderResults(fetchedData))
-
-    }, [currentPage])
-    const searchText = useRef(null)
-    function pressed() {
-        let search = searchText.current.value;
-        setCurrentPage(0)
-        // getAppID(search, 0)11
-    }
-    function nextPage() {
-        setCurrentPage(currentPage + 1)
-    }
-    function prevPage() {
-        setCurrentPage(currentPage - 1)
-    }
-    async function fetchGameData(appID) {
-        const res = await axios.post('/api/game/get', { id: appID }).then(async (res) => await res.data)
-        return res;
-    }
-    async function getAppData(text, begin) {
-        let count = 0;
-        let results = []
-        const regex = new RegExp(text, 'gi');
-        for (let i = 0; i < data.length && count < begin + 10; i++) {
-            if (regex.test(data[i]['name'])) {
-                if (count >= begin) {
-                    // results.push(data[i]['appid'])
-                    const res = await fetchGameData(data[i]['appid'])
-                    let temp = Object.values(res.data)[0]
-                    if (temp) if (temp.success == true && temp.data.type === 'game') {
-                        results.push(temp)
-                        count++;
-                    }
-                }
-
-            }
-        }
-        if (results.length === 0) {
-            if (currentPage < 0)
-                nextPage()
-            else prevPage()
-        }
-        return results;
-    }
+        if (button === -1) return;
+        await renderResults(text,(moreButton)?true:undefined)
+    }, [button])
+    
     return (<div className="container">
         <Head>
             <title>vent</title>
@@ -97,11 +59,16 @@ export default function () {
 
                 <input className="" style={{ minWidth: '40vw' }} type="text" placeholder="Search.." id="searchbox" ref={searchText}>
                 </input>
-                <button style={{ margin: '1rem' }} onClick={pressed}>Search</button>
+                <button style={{ margin: '1rem' ,cursor:"pointer"}} onClick={()=>{
+                    setText(searchText.current.value)
+                    setMoreButton(undefined)
+                    pressed()
+                    }}>Search</button>
                 {/* <button onClick={nextPage}>Next</button>
                 <button onClick={prevPage}>Previous</button> */}
             </div>
             <div className="grid-forum-posts">{searchResults}</div>
+            {moreButton}
         </div>
         </main>
     </div>);
