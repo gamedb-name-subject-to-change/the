@@ -5,7 +5,7 @@
     "dev": "next dev",
     "build": "next build",
     "lint": "next lint",
-    "start": "next dev",
+    "start": "next start -p $PORT",
     "heroku-postbuild": "npm run build",
     "devlog": "heroku logs -a csicontestapp -t"
   },
