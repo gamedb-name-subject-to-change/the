@@ -23,7 +23,8 @@ const RelatedPosts = ({props}) => {
         );
     };
     useEffect(async() => {
-        const data=await axios.post('/api/forum/get',{count:5,forGame:{appid: props.appid,name:props.name}}).then(async (res)=>await res.data);
+        const data=await axios.post('/api/forum/get',{count:5,forGame:{appid: props.appid,name:props.name}}).then(async (res)=>await res.data).catch(e=>{});
+        console.log("here ",data)
         if (data.posts.length == 0){ setPosts(<h1 className='card'>No Discussions</h1>);return }
         renderPosts(data.posts)
     }, []);
