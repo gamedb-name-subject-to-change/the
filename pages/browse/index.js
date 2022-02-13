@@ -6,7 +6,6 @@ const parse = require('html-react-parser');
 
 export default function () {
     const [button, clickButton] = useState(-1);
-    const [more, getMore] = useState(-1);
     const [text ,setText]=useState(null)
     const [searchResults, setResults] = useState(<></>)
     const [moreButton, setMoreButton] = useState(undefined)
@@ -16,7 +15,7 @@ export default function () {
     }
     const renderResults = async (search, more) => {
         const res = await axios.post('/api/game/search', { text: search, more }).then(async (res) => await res.data)
-        setResults(res.data.map((e, i) => {
+        let temp=res.data.map((e, i) => {
             return (<a
                 href={`/game/${e.steam_appid}`}
                 className="card" key={i}>
@@ -28,7 +27,9 @@ export default function () {
                 <img className="card-image" src={e.header_image}></img>
 
             </a>);
-        }))
+        })
+        if(temp.length<=0)setResults(<h1>No results</h1>)
+        else setResults(temp)
         if (res.more === true) {
             setMoreButton(
                 <button style={{ margin: '1rem' ,cursor:"pointer"}} onClick={pressed}>Load more</button>
@@ -38,6 +39,7 @@ export default function () {
 
     useEffect(async () => {
         if (button === -1) return;
+        setResults(<h1>Loading ...</h1>)
         await renderResults(text,(moreButton)?true:undefined)
     }, [button])
     

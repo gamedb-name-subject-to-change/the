@@ -21,7 +21,7 @@ const Posts = (props) => {
     }, []);
     return (
         <div>
-            <h1 className='title'>Recent Forum Activity</h1>
+            <h1 className='title'>User Activity</h1>
             {posts}
         </div>
     );

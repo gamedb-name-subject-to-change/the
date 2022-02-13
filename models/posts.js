@@ -20,7 +20,7 @@ const Schema = new mongoose.Schema({
     points: {
         type: Number,
     },
-    comments: [{ date: String, userId: Number, content: String, points: Number }],
+    comments: Array,
     date: {
         type: String,
     }
