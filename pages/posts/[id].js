@@ -41,7 +41,7 @@ export default function Post({ data }) {
                 </h1>
                 <Tags data={data.tags}/>
                 <div onClick={() => window.location.href = "/user/" + data.author} style={{ textAlign: 'right', cursor: "pointer" }}><strong style={{ fontSize: '150%' }}>by {data.author}</strong><br />{data.date}</div>
-                <p className="description">
+                <p className="description" style={{fontSize:'1rem'}}>
                     {parse(data.content)}
                 </p>
                 <h2>Comments</h2>
