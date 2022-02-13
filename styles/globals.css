@@ -4,7 +4,9 @@ body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
-
+span{
+    color:#999999
+}
 * {
     box-sizing: border-box;
 }
@@ -259,6 +261,8 @@ button{
 
 .card {
     margin: 1rem;
+    display: flex;
+    flex-direction: column;
     flex:auto;
     flex-basis: 45%;
     padding: 2rem;
@@ -285,7 +289,7 @@ button{
 }
 
 .card p {
-    margin: 0;
+    margin-bottom: 6%;
     font-size: 1rem;
     background-color: #4b4a5e;
     line-height: 1.5;

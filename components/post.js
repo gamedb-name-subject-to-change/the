@@ -10,9 +10,9 @@ const Post = (props) => {
     >
         <h3>{title}</h3>
         <p>
-            {(pcontent) ? pcontent.substring(0, 70) : pcontent}...
+            {(pcontent) ? pcontent.substring(0, 270) : pcontent}...
         </p>
-        <span>by {author} on {date}</span>
+        <span>by <strong>{author}</strong> on {date}</span>
         <Tags data={tags}/>
     </a>)
 }
