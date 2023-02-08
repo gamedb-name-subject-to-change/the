@@ -1,31 +1,14 @@
 import axios from 'axios';
 let matches = [];
 let index = 0;
-const uri = process.env.MongoSecret
-const mongoose=require('mongoose')
-mongoose.connect(uri,
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    }
-);
-const Schema = new mongoose.Schema({
-    appid: {
-        type: String,
-        required: true,
-        unique: true,
-    },
-    name:{
-        type: String,
-        required: true,
-    }
-});
-const  GameDB= mongoose.models.gdbsteam || mongoose.model("gdbsteam", Schema);
+import  GameDB from "../../../models/gamedata";
+import dbConnect from '../../../db/index'
 async function fetchGameData(appID) {
     const res = await axios.post('/api/game/get', { id: appID }).then(async (res) => await res.data)
     return res;
 }
 export default async function handler(req, res) {
+    await dbConnect()
     const { text, more } = req.body
     let results = []
     const regex = new RegExp(`.*${text}.*`, 'gi');

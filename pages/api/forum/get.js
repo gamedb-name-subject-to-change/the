@@ -1,19 +1,8 @@
-import mongoose from 'mongoose';
-import Posts from '../../../models/posts';
+import Posts from '../../../models/posts'
 import Comments from '../../../models/comments';
-const uri = process.env.MongoSecret
-mongoose.connect(uri,
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    }
-);
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error: "));
-db.once("open", function () {
-    console.log("Connected to Mongo");
-});
+import dbConnect from '../../../db/index'
 export default async function handler(req, res) {
+    await dbConnect()
     const { requestCount, keywords, id, byUser, forGame, addcomment, count } = req.body;
     if (req.method === 'GET') {
         let data = await Posts.find({}, { _id: 1 })

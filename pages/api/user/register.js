@@ -1,19 +1,9 @@
 import bcrypt from 'bcryptjs/dist/bcrypt';
-import mongoose from 'mongoose';
 import Users from '../../../models/users'
-const uri = process.env.MongoSecret
-mongoose.connect(uri,
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    }
-);
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error: "));
-db.once("open", function () {
-    console.log("Connected to Mongo");
-});
+import dbConnect from '../../../db/index'
+
 export default async function handler(req, res) {
+    await dbConnect()
     let { username, displayName, password } = req.body;
     password=await bcrypt.hash(password,10)
     console.log(password)

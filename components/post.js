@@ -3,7 +3,7 @@ import Tags from './tags';
 const Post = (props) => {
     const {_id,title,content,author,date,tags}=props.data
     const key=props.key
-    let pcontent=content.replace(/(<([^>]+)>)/ig,"")
+    let pcontent=(content)?content.replace(/(<([^>]+)>)/ig,""):""
     return (<a
         href={`/posts/${_id}`}
         className="card" key={key}

@@ -263,7 +263,6 @@ button{
     margin: 1rem;
     display: flex;
     flex-direction: column;
-    flex:auto;
     flex-basis: 45%;
     padding: 2rem;
     text-align: left;
@@ -273,6 +272,7 @@ button{
     border: 1px solid  	#4b4a5e;
     border-radius: 10px;
     transition: color 0.15s ease, border-color 0.15s ease;
+    height: fit-content;
 }
 
 .card:hover,

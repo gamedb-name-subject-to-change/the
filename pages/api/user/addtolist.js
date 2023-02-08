@@ -1,18 +1,8 @@
-import mongoose from 'mongoose';
 import Users from '../../../models/users'
-const uri = process.env.MongoSecret
-mongoose.connect(uri,
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    }
-);
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error: "));
-db.once("open", function () {
-    console.log("Connected to Mongo");
-});
+import dbConnect from '../../../db/index'
+
 export default async function handler(req, res) {
+    await dbConnect()
     const {user,appid,score,comment}=req.body
     let data = await Users.findOne({username:user})
     let list=data.list

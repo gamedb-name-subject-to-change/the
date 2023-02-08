@@ -1,14 +1,8 @@
-import mongoose from 'mongoose';
 import axios from 'axios';
-const uri = process.env.MongoSecret
-mongoose.connect(uri,
-    {
-        useNewUrlParser: true,
-        useUnifiedTopology: true
-    }
-);
-const  GameDB= mongoose.models.gdbsteam
+import dbConnect from '../../../db/index'
+import  GameDB from "../../../models/gamedata";
 export default async function handler(req, res) {
+    await dbConnect()
     const { id } = req.body;
     if (req.method == 'GET') {
         const data =  await GameDB.find({}, { name: 1 })
