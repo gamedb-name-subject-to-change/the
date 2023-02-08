@@ -98,12 +98,12 @@ export default function Home({ data }) {
     )
 }
 export async function getServerSidePaths() {
-    const res = await axios.get(`${env.URL}/api/game/get`).then(async (res) => await res.data)
+    const res = await axios.get(`${process.env.URL}/api/game/get`).then(async (res) => await res.data)
     const paths = res.map(item => { return { params: { id: item } } })
     return { paths, fallback: false }
 }
 export async function getServerSideProps({ params }) {
-    const res = await axios.post(`${env.URL}/api/game/get`, { id: params.id }).then(async (res) => await res.data)
+    const res = await axios.post(`${process.env.URL}/api/game/get`, { id: params.id }).then(async (res) => await res.data)
     const data = Object.values(res.data)[0].data
     return { props: { data } }
 }

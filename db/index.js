@@ -1,12 +1,10 @@
 import mongoose from 'mongoose'
 
-
-import env from '../environments/env.json'
-const MONGODB_URI = env.MongoSecret
+const MONGODB_URI = process.env.MongoSecret
 
 if (!MONGODB_URI) {
   throw new Error(
-    'Please define the MONGODB_URI environment variable inside .env.local'
+    'Please define the MONGODB_URI environment variable inside .process.env.local'
   )
 }
 let cached = global.mongoose

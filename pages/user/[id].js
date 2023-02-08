@@ -30,11 +30,11 @@ export default function ({ data }) {
     </div>);
 }
 export async function getServerSidePaths() {
-    const res = await axios.get(`${env.URL}/api/user/get`).then(async (res) => await res.data)
+    const res = await axios.get(`${process.env.URL}/api/user/get`).then(async (res) => await res.data)
     const paths = res.map(item => { return { params: { id: item } } })
     return { paths, fallback: false }
 }
 export async function getServerSideProps({ params }) {
-    const data = await axios.post(`${env.URL}/api/user/get`, { id: params.id }).then(async (res) => await res.data)
+    const data = await axios.post(`${process.env.URL}/api/user/get`, { id: params.id }).then(async (res) => await res.data)
     return { props: { data } }
 }
