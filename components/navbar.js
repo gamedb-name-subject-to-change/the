@@ -20,7 +20,7 @@ export default function () {
     },[])
     return (
         <div className='container-navbar'>
-            <h1 ><a href="/">vent</a></h1>
+            <h1 ><a href="/">PlayersDen</a></h1>
             <div className="navbar-button" onClick={() => window.location.href = "/browse"}>Browse</div>
             <div className="navbar-button" onClick={() => window.location.href = "/forum"}>Forums</div>
             {userButtons}
