@@ -15,7 +15,7 @@ export default function Post({ data }) {
         let res = await axios.post('/api/user/validate', { token: token }).then(async (res) => await res.data)
         if (!(res.status === 'ok')) { alert('You need to login before posting a comment'); return; }
         res = await axios.post('/api/forum/get', { addcomment: { author: res.user,post:data._id, content: content, date: new Date() } })
-        if(res.status===200){alert('Your comment has been posted');setInput(<button style={{cursor:'pointer'}}>+ New Comment</button>)}
+        if(res.status===200){window.location.reload();setInput(<button style={{cursor:'pointer'}}>+ New Comment</button>)}
         else{alert("something went wrong")}
     }
     useEffect(async()=>{
