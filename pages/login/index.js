@@ -112,7 +112,7 @@ export default function Login({ data }) {
                                     </div>
                                     <div className={styles['input-box']}>
                                         <i className={styles.fas + " " + styles['fa-envelope']}></i>
-                                        <input type="text" ref={ndisplayName} placeholder="Full Name" required />
+                                        <input type="email" ref={ndisplayName} placeholder="Email" required />
                                     </div>
                                     <div className={styles['input-box']}>
                                         <i className={styles.fas + " " + styles['fa-lock']}></i>
