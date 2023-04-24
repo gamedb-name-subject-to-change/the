@@ -16,18 +16,20 @@ export default function Post({ data }) {
         let res = await axios.post('/api/user/validate', { token: token }).then(async (res) => await res.data)
         if (!(res.status === 'ok')) { alert('You need to login before posting a comment'); return; }
         res = await axios.post('/api/forum/get', { addcomment: { author: res.user,post:data._id, content: content, date: new Date() } })
-        if(res.status===200){window.location.reload();setInput(<button style={{cursor:'pointer'}}>+ New Message</button>)}
+        if(res.status===200){setInput(<button style={{cursor:'pointer'}}>+ New Message</button>)}
         else{alert("something went wrong")}
     }
-    useEffect(async()=>{
+    const getComments = async()=>{
+        const waitFor = delay => new Promise(resolve => setTimeout(resolve, delay));
+        await waitFor(1000);
         let res = await axios.post('/api/forum/comments', { postid: data._id }).then(async (res) => await res.data)
         setComments(<Comments data={res.data}/>)
-    },[input])
-    useEffect(()=>{
-        setTimeout(()=>{},1000)
-        triggerUpdate(!update)
-        console.log("hey there welcome to our forum")
-    },[update])
+        console.log(res.data)
+    }
+    useEffect(async()=>{
+       await getComments()
+       console.log("jedee")
+    },[comments])
     return (<div className="container">
         <Head>
             <title>{data.title}</title>
