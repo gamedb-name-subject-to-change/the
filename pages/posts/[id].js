@@ -56,7 +56,7 @@ export default function Post({ data }) {
                 <div onClick={() => {
                     setInput(<div className='container'>
                         <div className="form">
-                            <textarea type="text" style={{minWidth:'60vw', height:'20vh'}}
+                            <input type="text" style={{minWidth:'60vw', height:'20vh'}}
                                 placeholder="Send"
                                 ref={comment}
                             />
