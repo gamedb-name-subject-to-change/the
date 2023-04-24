@@ -13,7 +13,7 @@ const Comments = (props) => {
             </a>)
         })
         setList(temp)
-    }, [])
+    }, [props])
     return(
         <div className='comment-wrapper'>{list}</div>
     )
